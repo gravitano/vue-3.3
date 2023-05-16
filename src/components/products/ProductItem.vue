@@ -7,6 +7,10 @@ const { product } = defineProps<{
   product: T;
 }>();
 
+const emit = defineEmits<{
+  buy: [];
+}>();
+
 const formattedRate = computed(() => {
   return product.rating.rate.toFixed(2);
 });
@@ -27,6 +31,6 @@ const localePrice = computed(() => {
     </article>
     <p>Price: {{ localePrice }}</p>
     <p>Rating: {{ formattedRate }}</p>
-    <AppButton>Buy Now</AppButton>
+    <AppButton @click="emit('buy')">Buy Now</AppButton>
   </div>
 </template>

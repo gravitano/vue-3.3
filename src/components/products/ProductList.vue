@@ -15,6 +15,7 @@ defineProps<{
         v-for="product in products"
         :key="product.id"
         :product="product"
+        @buy="console.log('buy', product)"
       />
     </ul>
   </div>
