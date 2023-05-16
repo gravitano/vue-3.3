@@ -1,20 +1,38 @@
 <script setup lang="ts">
-import AppButton from '@/components/app/AppButton.vue';
+import AppInput from '@/components/app/AppInput.vue';
 import ProductList from '@/components/products/ProductList.vue';
 import type { Product } from '@/components/products/types';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { watchDebounced } from '@vueuse/core';
 
+const search = ref('');
 const products = ref<Product[]>([]);
 
-fetch('https://fakestoreapi.com/products')
-  .then((res) => res.json())
-  .then((data) => {
-    products.value = data as Product[];
-  });
+function fetchData() {
+  fetch(`https://fakestoreapi.com/products?search=${search.value}`)
+    .then((res) => res.json())
+    .then((data) => {
+      products.value = data as Product[];
+    });
+}
+
+fetchData();
+
+watch(search, () => {
+  fetchData();
+});
+
+watchDebounced(
+  search,
+  () => {
+    fetchData();
+  },
+  { debounce: 500, maxWait: 3000 }
+);
 </script>
 
 <template>
   <h1>Welcome</h1>
+  <AppInput v-model="search" placeholder="Search" />
   <ProductList :products="products" />
-  <AppButton>Click me</AppButton>
 </template>
