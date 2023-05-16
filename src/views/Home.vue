@@ -32,7 +32,7 @@ watchDebounced(
 </script>
 
 <template>
-  <h1>Welcome</h1>
+  <h1 class="text-4xl font-semibold mb-4">Welcome Vue 3.3!</h1>
   <AppInput v-model="search" placeholder="Search" />
   <ProductList :products="products" />
 </template>

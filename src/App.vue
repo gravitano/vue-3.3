@@ -1,5 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <RouterView />
+  <div class="container mx-auto p-6">
+    <RouterView />
+  </div>
 </template>

@@ -11,7 +11,9 @@ defineSlots<{
 </script>
 
 <template>
-  <button>
+  <button
+    class="text-sm font-semibold bg-amber-500 hover:bg-amber-600 transition duration-300 text-white rounded-lg px-3 py-2"
+  >
     <slot name="prefix" />
     <slot />
     <slot name="suffix" />
