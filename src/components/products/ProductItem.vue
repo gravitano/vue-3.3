@@ -1,10 +1,10 @@
-<script setup lang="ts" generic="T extends Product">
+<script setup lang="ts">
 import { computed } from 'vue';
 import type { Product } from './types';
 import AppButton from '../app/AppButton.vue';
 
 const { product } = defineProps<{
-  product: T;
+  product: Product;
 }>();
 
 const emit = defineEmits<{
